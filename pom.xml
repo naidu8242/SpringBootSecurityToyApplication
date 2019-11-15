@@ -65,7 +65,7 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 	</dependencies>
-
+<!-- this application is testing for security purpose -->
 	<build>
 		<plugins>
 			<plugin>
