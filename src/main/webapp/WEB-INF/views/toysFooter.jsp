@@ -58,14 +58,19 @@
     z-index: 1;
 } 
 
-.vertical-tab input[name="sections"]:checked+label {
+/* .vertical-tab input[name="sections"]:checked+label {
     background: #00ad45;
     border-right: 1px solid #000;
     color: #fff;
+} */
+.activeLabel {
+    background: #00ad45 !important;
+    border-right: 1px solid #000 !important;
+    color: #fff !important;
 }
-.vertical-tab input[name="sections"]:checked~article {
+/* .vertical-tab input[name="sections"]:checked~article {
     display: block;
-}
+} */
 
 label.icon-left-w3pvt span {
     display: block;
@@ -549,8 +554,8 @@ padding: 2px 12px; cursor: pointer;
 			<div class="vertical-tab">
 				<div id="section1" class="section-w3ls" >
 					<input type="radio" name="sections" id="option1" checked>
-					<label for="option1" class="icon-left-w3pvt"><span class="fa fa-user-circle" aria-hidden="true"></span>Login</label>
-					<article>
+					<label id="optionLogin" for="option1" class="icon-left-w3pvt"><span class="fa fa-user-circle" aria-hidden="true"></span>Login</label>
+					<article class="optionLogin">
 						<form id="login-form" name="login-form" method="post" action="/login">
 							<h3 class="legend">Login Here</h3>
 							<div class="input">
@@ -571,30 +576,35 @@ padding: 2px 12px; cursor: pointer;
 				</div>
 				<div id="section2" class="section-w3ls" >
 					<input type="radio" name="sections" id="option2">
-					<label for="option2" class="icon-left-w3pvt"><span class="fa fa-pencil-square" aria-hidden="true"></span>Register</label>
-					<article>
+					<label id="optionRegister" for="option2" class="icon-left-w3pvt"><span class="fa fa-pencil-square" aria-hidden="true"></span>Register</label>
+					<article class="optionRegister">
 						<form action="#" id="register-form" name="register-form" method="post">
 							<h3 class="legend">Register Here</h3>
 							<div class="input">
 								<span class="fa fa-user-o" aria-hidden="true"></span>
-								<input type="text" placeholder="Username" name="name" required />
+								<input type="text" placeholder="Your Name" name="registerName" id="registerName" required />
+							</div>
+							<div class="input">
+								<span class="fa fa-envelope-o" aria-hidden="true"></span>
+								<input type="text" placeholder="Your Email Address" name="registerEmail" id="registerEmail" required />
 							</div>
 							<div class="input">
 								<span class="fa fa-key" aria-hidden="true"></span>
-								<input type="password" placeholder="Password" name="password" required />
+								<input type="password" placeholder="Choose Password" name="registerPassword" id="registerPassword" required />
 							</div>
 							<div class="input">
-								<span class="fa fa-key" aria-hidden="true"></span>
-								<input type="password" placeholder="Confirm Password" name="password" required />
+								<span class="fa fa-phone" aria-hidden="true"></span>
+								<input type="number" min="1000000000" max="9999999999" name="registerMobileNumber"  id="registerMobileNumber"  placeholder="Mobile Number (For order status updates)" required />
 							</div>
-							<button type="submit" class="btn submit">Register</button>
+							
+					<button type="button" class="btn submit" onclick="toysRegistation();">Register</button>
 						</form>
 					</article>
 				</div>
 				<div id="section3" class="section-w3ls">
 					<input type="radio" name="sections" id="option3">
-					<label for="option3" class="icon-left-w3pvt"><span class="fa fa-lock" aria-hidden="true"></span>Forgot Password?</label>
-					<article>
+					<label  id="optionForgot" for="option3" class="icon-left-w3pvt"><span class="fa fa-lock" aria-hidden="true"></span>Forgot Password?</label>
+					<article class="optionForgot">
 						<form action="#" id="reset-form" name="register-form" method="post">
 							<h3 class="legend last">Reset Password</h3>
 							<p class="para-style">Enter your email address below and we'll send you an email with instructions.</p>
@@ -735,8 +745,13 @@ padding: 2px 12px; cursor: pointer;
       
       <script>
       function openLoginModal(){
-    	 $('#login-form')[0].reset();
     	$("#loginModal, #boxdropshadow").fadeIn();
+    	 $(".optionLogin").show();
+    	 $(".optionRegister").hide();
+    	 $(".optionForgot").hide();
+    	 $("#optionLogin").addClass("activeLabel");
+    	 $("#optionForgot").removeClass("activeLabel");
+    	 $("#optionRegister").removeClass("activeLabel");
       };
       $("#closePop").click(function() {
     	  $("#loginModal, #boxdropshadow").fadeOut();
@@ -774,30 +789,58 @@ padding: 2px 12px; cursor: pointer;
       </script>
       
       
-<script type="text/javascript">
-	(function($) {
-		$.fn.serializeFormJSON = function() {
-			var o = {};
-			var a = this.serializeArray();
-			$.each(a, function() {
-				if (o[this.name]) {
-					if (!o[this.name].push) {
-						o[this.name] = [ o[this.name] ];
-					}
-					o[this.name].push(this.value || '');
-				} else {
-					o[this.name] = this.value || '';
-				}
-			});
-			return o;
-		};
-	})(jQuery);
-</script>
+      
+      <script>
+      function toysRegistation(){
+    		var formData = getFormData("register-form");
+    		$.ajax({
+      			type : "POST",
+      			data: formData,
+      			url :"/toysRegistration",
+      			success : function(data) {
+      				alert(data == false)
+      				if(data == false)
+      				document.getElementById("colorHiding").style.display="block";
+      				else
+      				document.getElementById("colorHiding").style.display="none";
+      			},
+      		});
+    	  
+      }
+      </script>
       
       
-      
-      
-      
+ 
+ <script>
+ $(".optionLogin").show();
+ $('#optionLogin').addClass("activeLabel");
+ $("#optionLogin").click(function(){
+	$(this).addClass("activeLabel");
+	 $("#optionForgot").removeClass("activeLabel");
+	 $("#optionRegister").removeClass("activeLabel");
+	 $(".optionLogin").show();
+	 $(".optionRegister").hide();
+	 $(".optionForgot").hide();
+ });
+ 
+ $("#optionRegister").click(function(){
+	 $(this).addClass("activeLabel");
+	 $("#optionLogin").removeClass("activeLabel");
+	 $("#optionForgot").removeClass("activeLabel");
+	 $(".optionRegister").show();
+	 $(".optionLogin").hide();
+	 $(".optionForgot").hide();
+ });
+ 
+ $("#optionForgot").click(function(){
+	 $(this).addClass("activeLabel");
+	 $("#optionLogin").removeClass("activeLabel");
+	 $("#optionRegister").removeClass("activeLabel");
+	 $(".optionForgot").show();
+	 $(".optionRegister").hide();
+	 $(".optionLogin").hide();
+ });
+ </script> 
       
       
       

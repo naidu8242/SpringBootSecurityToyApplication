@@ -50,6 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/toysRegistration").permitAll()
                 .antMatchers("/resources/**").permitAll()
 //                .antMatchers("/toysLoginForm/**").permitAll()
                 .anyRequest().authenticated()

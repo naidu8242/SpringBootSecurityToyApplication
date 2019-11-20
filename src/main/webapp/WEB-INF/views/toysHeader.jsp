@@ -47,7 +47,7 @@
 	<script src="/resources/js/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="/resources/js/bootstrap.js" type="text/javascript"></script>
 	<script src="/resources/js/login-register.js" type="text/javascript"></script>
-	
+	<script src="/resources/js/slead-common.js" type="text/javascript"></script>
 	
    </head>
    <body>

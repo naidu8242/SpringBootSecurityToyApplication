@@ -1,7 +1,5 @@
 package in.bushansirgur.springbootcrud.springbootcrudapi.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,11 +18,9 @@ public class LoginSeesionController {
 	@Autowired
 	LoginSessionService loginSessionService;
 	
-	
-	@RequestMapping(value="/toysLoginForm", method = RequestMethod.POST)
-	public @ResponseBody Boolean toysLoginForm(HttpServletRequest request, HttpServletResponse response, ToysLoginFormsDTO toysLoginFormsDTO) throws IOException {
-		Boolean flag = loginSessionService.loginCredentials(toysLoginFormsDTO);
-		return flag;
+	@RequestMapping(value="/toysRegistration", method = RequestMethod.POST)
+	public @ResponseBody String toysRegistration(HttpServletRequest request, HttpServletResponse response, ToysLoginFormsDTO toysLoginFormsDTO) throws Exception {
+		loginSessionService.toysRegistationForm(toysLoginFormsDTO);
+		return "success";
 	}
-
 }
