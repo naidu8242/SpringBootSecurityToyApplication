@@ -68,6 +68,9 @@ public class EmailSendingUtill {
 	        MimeMessage message = mailSender.createMimeMessage();
 	        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
+	        mimeMessageHelper.addInline("logo.png", new ClassPathResource("classpath:/Personal_Budget_Form.pdf"));
+
+	        
 	        Template template = emailConfig.getTemplate("registationEmail.html");
 	        String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, mailModels.getModel());
 	        mimeMessageHelper.setTo(toysLoginFormsDTO.getRegisterEmail());
