@@ -137,6 +137,15 @@ public class EmployeeController {
 		return mav;
 	}
 	
+	
+	
+	@RequestMapping("/fileUpload")
+	public ModelAndView fileUpload() {
+		ModelAndView mav = new ModelAndView("fileUpload");
+		mav.addObject("singleActive", "active");
+		return mav;
+	}
+	
 	@RequestMapping("/403")
 	public ModelAndView accessDenidePage() {
 		ModelAndView mav = new ModelAndView("persmissionDenied");

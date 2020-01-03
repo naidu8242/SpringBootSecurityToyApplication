@@ -154,6 +154,11 @@
                      <li class="nav-item ${contactActive}">
                         <a href="${pageContext.request.contextPath}/contact" class="nav-link">Contact</a>
                      </li>
+                     
+                      <li class="nav-item ${contactActive}">
+                        <a href="${pageContext.request.contextPath}/fileUpload" class="nav-link">FileUpload</a>
+                     </li>
+                     
                   </ul>
                </div>
             </nav>
