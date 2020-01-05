@@ -93,11 +93,15 @@ public class FileController {
 	
 	
 	
-	@RequestMapping(value = "/getToysVidoesList", method = RequestMethod.POST)
-	public @ResponseBody List<UploadToys>  getToysVidoesList(HttpServletRequest request) throws Exception {
+	 @RequestMapping(value = "/getToysVidoesList")
+	public @ResponseBody ModelAndView  getToysVidoesList(HttpServletRequest request) throws Exception {
+		ModelAndView model = new ModelAndView();
 		 List<UploadToys> videosList  = uploadToysVideosDao.getVideosList();
-		return videosList;
+		 model.addObject("videosList", videosList);
+		 model.setViewName("videoList");
+		return model;
 	}
+	
 	
 	
 	
