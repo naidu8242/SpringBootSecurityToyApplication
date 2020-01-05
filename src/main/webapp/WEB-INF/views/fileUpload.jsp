@@ -23,7 +23,9 @@
             <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">Contact US</h3>
             <div class="contact-list-grid">
             
-				<h1>Show a file-select field:</h1>
+				<h1>Show a file-select field:</h1> 
+				<a href="${pageContext.request.contextPath}/getToysVidoesList" class="nav-link">Vidoes List</a>
+				
 				<form id="jananetha_videos_form" name="jananetha_videos_form">
 				<div class="form-group">
 					<label class="col-md-3">Attach Resume</label>
@@ -46,7 +48,6 @@
 				</form>
             </div>
             <br><br>
-            
 			<br>
              <div id="videosList"></div>
          </div>
@@ -95,6 +96,10 @@
 						 result = result + ' <video width="320" height="240" controls>';
 						 result = result + '  <source src="'+report.fileURL+'" type="video/mp4">';
 						 result = result + ' </video>'; 
+						 
+						 result = result + '<div class="embed-responsive embed-responsive-16by9">';
+						 result = result + '	  <iframe class="embed-responsive-item" src="C:\Users\RamaSri\Downloads\SampleVideo1.mp4" allowfullscreen></iframe>';
+						 result = result + '	</div>';
 		   			}
 					 $("#videosList").empty();
 				     $("#videosList").append(result);
@@ -106,31 +111,11 @@
        
        </script>
              
-   <script type="text/javascript">
+  <!--  <script type="text/javascript">
     window.onload = function () {
     	getUploadList();
     };
     
-</script>
+</script> -->
              
-             
-             
-             
-             
-            
-			             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
+   
