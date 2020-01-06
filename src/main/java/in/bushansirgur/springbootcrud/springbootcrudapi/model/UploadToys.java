@@ -22,6 +22,9 @@ public class UploadToys {
 	@Column(name = "FILE_URL")
 	private String fileURL;
 	
+	@Column(name = "FILE_FORMAT")
+	private String fileFormat;
+	
 	public Long getId() {
 		return id;
 	}
@@ -39,5 +42,11 @@ public class UploadToys {
 	}
 	public void setFileURL(String fileURL) {
 		this.fileURL = fileURL;
+	}
+	public String getFileFormat() {
+		return fileFormat;
+	}
+	public void setFileFormat(String fileFormat) {
+		this.fileFormat = fileFormat;
 	}
 }

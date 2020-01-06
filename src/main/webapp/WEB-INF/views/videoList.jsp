@@ -5,21 +5,15 @@
 
 
 <c:forEach items="${videosList}" var="list">
-<div class="embed-responsive embed-responsive-16by9 z-depth-3">
-      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fa3Iczgh8Ok"></iframe>
-      <iframe class="embed-responsive-item" src="C:/Users/RamaSri/Downloads/SampleVideo1.mp4"></iframe>
-    </div>
-
+<c:if test="${list.fileFormat eq 'mp4'}">
+      <video width="320" height="240" controls>
+	 	 <source src="${list.fileURL}" >
+	  </video>
+    </c:if>
+    <br> <br>
+    <c:if test="${list.fileFormat eq 'jpg' }">
+    <img src="${list.fileURL}"  width="500" height="100">
+    </c:if>
 </c:forEach>
-
-
-<video controls>  
-	  <source src="C:/Users/RamaSri/Downloads/SampleVideo1.mp4" type="video/mp4">  
-</video> 
-Hello Boss
-
-
-
-
 </html>
 </body>

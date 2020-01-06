@@ -8,12 +8,14 @@ import org.springframework.format.support.FormattingConversionService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @EnableWebSecurity
 @Configuration
@@ -47,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	http.csrf().disable();
+    	http.headers().frameOptions().disable();
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
@@ -57,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/upload/**").permitAll()
                 .antMatchers("/fileUpload").permitAll()
+                .antMatchers("/slead-static/**").permitAll()
 //                .antMatchers("/toysLoginForm/**").permitAll()
                 .anyRequest().authenticated()
 //                .antMatchers("/").permitAll()
@@ -72,13 +76,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         
 //    			.defaultSuccessUrl("/toysHome");
     }
-    
-    
-//    @Bean
-//	public FormattingConversionService conversionService() {
-//		FormattingConversionService conversionService = new DefaultFormattingConversionService();
-//		System.out.println("conversion");
-//		return conversionService;
-//	}
 
 }

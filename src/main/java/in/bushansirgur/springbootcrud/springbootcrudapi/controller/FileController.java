@@ -2,14 +2,12 @@ package in.bushansirgur.springbootcrud.springbootcrudapi.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.bushansirgur.springbootcrud.springbootcrudapi.Utill.FileInfo;
 import in.bushansirgur.springbootcrud.springbootcrudapi.Utill.FileUploadUtil;
@@ -82,6 +81,8 @@ public class FileController {
 		          if(uploadToysDto.getFileInfo()!= null && !uploadToysDto.getFileInfo().isEmpty()){
 		        	  FileInfo fileInfo = uploadToysDto.getFileInfo().get(0);
 		        	  uploadToys.setFileName(fileInfo.getFileName());
+		        	  String[] fileFormat = fileInfo.getFileName().split(Pattern.quote("."));
+		        	  uploadToys.setFileFormat(fileFormat[1].toString());
 		  			  uploadToys.setFileURL(fileInfo.getFileURL().replaceAll(" ", "_"));
 		  			  FileUploadUtil.moveFile(staticPath, fileInfo, "jananetha_videos");
 		  			  uploadToysVideosDao.saveUploadToys(uploadToys);
