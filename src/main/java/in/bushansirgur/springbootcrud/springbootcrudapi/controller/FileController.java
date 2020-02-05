@@ -66,7 +66,7 @@ public class FileController {
 			FileUploadUtil fileUploadUtil = new FileUploadUtil();
 					String fileURL = fileUploadUtil.uploadFile(staticPath, feedType, type, file);
 					fileInfo.setFileName(multiFile.getOriginalFilename());
-					fileInfo.setFileURL(type.equalsIgnoreCase("ticket") ? fileURL.replace("/ticket/", "/temp/") : fileURL);
+					fileInfo.setFileURL(fileURL);
 					fileInfo.setContentType(multiFile.getContentType());
 					fileInfoList.add(fileInfo);
 		}

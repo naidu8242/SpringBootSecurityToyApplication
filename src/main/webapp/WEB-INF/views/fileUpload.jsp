@@ -47,9 +47,31 @@
 				<input type="button" value="Save"  onclick="saveFileUpload();" class="btn btn-primary">
 				</form>
             </div>
-            <br><br>
-			<br>
-             <div id="videosList"></div>
+            
+            
+            
+            <form id="validateOtp" name="validateOtp" method="post">
+                <fieldset>
+
+                        <div class="alert alert-danger">
+                            Invalid Otp Try Again 
+                        </div>
+                     
+                    <div class="form-group">
+                        <input type="text" name="otpnum" id="otpnum" class="form-control input-lg"
+                               required="true" autofocus="true"/>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit"/>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            
          </div>
       </section>
        
